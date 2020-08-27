@@ -22,7 +22,6 @@ function solution(people, limit) {
         answer++;
 
     return answer;
-
 }
 
 result = solution([70, 80, 50], 100);
