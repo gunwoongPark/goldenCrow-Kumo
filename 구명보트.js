@@ -1,34 +1,30 @@
 function solution(people, limit) {
-
     people.sort(function (a, b) {
         return a - b;
     })
 
     var answer = 0;
-    let boatWeight = 0;
-    let mostLight = 0;
 
-    while (people.length !== 0) {
-        mostLight = Math.min.apply(null, people);
+    let lightIndex = 0;
+    let heavyIndex = people.length - 1;
 
-        if (limit >= boatWeight + mostLight) {
-            const index = people.indexOf(mostLight);
-            boatWeight += mostLight;
-            people.splice(index, 1);
-            if (people.length === 0) {
-                answer += 1;
-            }
+    while (lightIndex < heavyIndex) {
+        if (people[lightIndex] + people[heavyIndex] <= limit) {
+            lightIndex++;
+            heavyIndex--;
         }
-
         else {
-            answer += 1;
-            boatWeight = 0;
+            heavyIndex--;
         }
+        answer++;
     }
+    if (lightIndex === heavyIndex)
+        answer++;
 
     return answer;
+
 }
 
-result = solution([10, 20, 30, 40, 50, 60, 70, 80, 90], 100);
+result = solution([70, 80, 50], 100);
 
 console.log(result);
