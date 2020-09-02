@@ -1,4 +1,3 @@
-
 function DFS(start, graph, visit) {
     if (visit[start] === true) {
         return 0;
